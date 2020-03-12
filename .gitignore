@@ -1,0 +1,8 @@
+# Specify filepatterns you want git to ignore.
+appsettings.Development.json
+.idea
+bin
+.vs
+obj
+debug.log
+

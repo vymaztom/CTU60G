@@ -1,0 +1,10 @@
+﻿{
+  "profiles": {
+    "CTU60G": {
+      "commandName": "Project",
+      "environmentVariables": {
+        "DOTNET_ENVIRONMENT": "Development"
+      }
+    }
+  }
+}
