@@ -8,6 +8,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using CTU60G.Json;
 using Newtonsoft.Json.Linq;
+using CTU60GLib.Client;
 
 namespace CTU60G
 {
@@ -26,23 +27,9 @@ namespace CTU60G
         {
             while (!stoppingToken.IsCancellationRequested)
             {
-                string json = "";
-                using (WebClient wc = new System.Net.WebClient())
-                {
-                    json = wc.DownloadString("http://is.sychrovnet.cz/public/60g_ctu_api.php?key=sdf82Jd92msmn9jdlnf0ejS&action=getDevices&unreg=1&limit=5");
-                }
+                CTUClient client = new CTUClient();
+                await client.LoginAsync(_workerOptions.CTULogin,_workerOptions.CTUPass);
 
-
-                var jObj = JObject.Parse(json).Children().Children();
-                List<WirelessSite> sites = new List<WirelessSite>();
-                foreach (var site in jObj)
-                {
-                    sites.Add(site.ToObject<WirelessSite>());
-                }
-
-                CTUWebManagement web = new CTUWebManagement(_workerOptions);
-
-                    web.LogIn();
                 await Task.Delay(1);
                 break;
             }

@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29509.3
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CTU60G", "CTU60G.csproj", "{E2AFF9D1-D6F4-4DBC-A5C4-E13646A4A506}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CTU60G", "CTU60G.csproj", "{E2AFF9D1-D6F4-4DBC-A5C4-E13646A4A506}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CTU60GLib", "..\..\CTU60GLib\CTU60GLib\CTU60GLib.csproj", "{BEEA525F-ABBC-434A-A5FE-D3B3965E6A24}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{E2AFF9D1-D6F4-4DBC-A5C4-E13646A4A506}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E2AFF9D1-D6F4-4DBC-A5C4-E13646A4A506}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E2AFF9D1-D6F4-4DBC-A5C4-E13646A4A506}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BEEA525F-ABBC-434A-A5FE-D3B3965E6A24}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BEEA525F-ABBC-434A-A5FE-D3B3965E6A24}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BEEA525F-ABBC-434A-A5FE-D3B3965E6A24}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BEEA525F-ABBC-434A-A5FE-D3B3965E6A24}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
