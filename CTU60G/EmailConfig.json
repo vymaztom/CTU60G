@@ -1,0 +1,12 @@
+{
+  "Host": "smtp.gmail.com",
+  "Port": "587",
+  "EnableSsl": "true",
+  "User": "testtoscrpts@gmail.com",
+  "Password": "testtoscript123",
+  "FromEmail": "testtoscrptsINVALID@gmail.com",
+  "FromName": "APTSERVIS",
+  "ToEmails": [
+    "testtoscrpts@gmail.com"
+  ]
+}
