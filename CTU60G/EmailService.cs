@@ -12,8 +12,9 @@ using Newtonsoft.Json;
 ***************************************************************************************************/
 
 /*    
+    EmailOptions conf = ...
 
-    EmailService email = new EmailService("EmailConfig.json");
+    EmailService email = new EmailService(conf);
 
     try
     {
@@ -29,7 +30,7 @@ using Newtonsoft.Json;
 
 /****************************************************************************************************  
 
-                                   STRUCTURE OF MailConfig.json
+                                   STRUCTURE OF SECTION "Email"
  
 ***************************************************************************************************/
 
@@ -55,31 +56,20 @@ namespace CTU60G
 {
     public class EmailService
     {
-        public class EmailConfig
-        {
-            public string Host { get; set; }
-            public int Port { get; set; }
-            public string EnableSsl { get; set; }
-            public string User { get; set; }
-            public string Password { get; set; }
-            public string FromEmail { get; set; }
-            public string FromName { get; set; }
-            public IList<string> ToEmails { get; set; }
-        }
 
         private bool isHTML;
         private MailPriority priority;
-        private String pathToConfigFile;
+        private EmailOptions config;
 
-        public EmailService(String PathToConfigFile, MailPriority Priority, bool IsHTLMmsg)
+        public EmailService(EmailOptions conf, MailPriority Priority, bool IsHTLMmsg)
         {
-            pathToConfigFile = PathToConfigFile;
+            config = conf;
             isHTML = IsHTLMmsg;
             priority = Priority;
         }
-        public EmailService(String PathToConfigFile)
+        public EmailService(EmailOptions conf)
         {
-            pathToConfigFile = PathToConfigFile;
+            config = conf;
             isHTML = false;
             priority = MailPriority.High;
         }
@@ -98,31 +88,21 @@ namespace CTU60G
             return new MailAddress(email, name);
         }
 
-        private EmailConfig loadConfig()
-        {
-            EmailConfig item;
-            using (StreamReader r = new StreamReader(pathToConfigFile))
-            {
-                string json = r.ReadToEnd();
-                item = JsonConvert.DeserializeObject<EmailConfig>(json);
-            }
-            return item;
-        }
+
 
         private void sendEmail(MailMessage msg)
         {
-            EmailConfig conf = loadConfig();
 
-            msg.From = createMailAddress(conf.FromEmail, conf.FromName);
-            foreach (String item in conf.ToEmails)
+            msg.From = createMailAddress(config.FromEmail, config.FromName);
+            foreach (String item in config.ToEmails)
             {
                 msg.To.Add(item);
             }
 
             SmtpClient client = new SmtpClient();
-            client.Host = conf.Host;
-            client.Port = conf.Port;
-            if (conf.EnableSsl == "true")
+            client.Host = config.Host;
+            client.Port = config.Port;
+            if (config.EnableSsl == "true")
             {
                 client.EnableSsl = true;
             }
@@ -132,7 +112,7 @@ namespace CTU60G
             }
             client.DeliveryMethod = SmtpDeliveryMethod.Network;
             client.UseDefaultCredentials = false;
-            client.Credentials = new System.Net.NetworkCredential(conf.User, conf.Password);
+            client.Credentials = new System.Net.NetworkCredential(config.User, config.Password);
             client.Send(msg);
         }
 
